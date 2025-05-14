@@ -9,4 +9,5 @@ https://huggingface.co/chat/
 Playground VIsion
 https://github.com/marketplace/models/azureml/Phi-4-multimodal-instruct/playground
 
-
+Code Samples 
+https://github.com/microsoft/PhiCookBook
