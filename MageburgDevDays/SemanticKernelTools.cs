@@ -10,37 +10,39 @@ namespace MageburgDevDays
 {
     internal class SemanticKernelTools
     {
-        var ip = "http://127.0.0.1:1234/v1"; //LM Studio
+        async void runLLM()
+        {
+            var ip = "http://127.0.0.1:1234/v1"; //LM Studio
 #pragma warning disable SKEXP007
-        var builder = Kernel.CreateBuilder();
-        builder.AddOpenAIChatCompletion(
-            modelId: "phi4-mini-instruct",
-    apiKey: "lm-studio",
-    endpoint: new Uri(ip)
-);
-var kernel = builder.Build();
-
-    
-        kernel.Plugins.AddFromObject(new WetterPlugin());
-
-PromptExecutionSettings settings = new()
-{
-    FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
-};
+            var builder = Kernel.CreateBuilder();
+            builder.AddOpenAIChatCompletion(
+                modelId: "phi4-mini-instruct",
+        apiKey: "lm-studio",
+        endpoint: new Uri(ip)
+    );
+            var kernel = builder.Build();
 
 
-        //var chatPrompt = new ChatHistory();
-        //chatPrompt.AddSystemMessage("You are a helpful assistant with some tools available.");
-        //chatPrompt.AddUserMessage("was brauche ich in Wien heute für Kleidung draussen?");
+            kernel.Plugins.AddFromObject(new WetterPlugin());
+
+            PromptExecutionSettings settings = new()
+            {
+                FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+            };
 
 
-        //var chatResponse = await chat.GetChatMessageContentAsync(chatPrompt);
-        //var result = await kernel.InvokePromptAsync("Sag mir das Wetter in Wien.", new KernelArguments(settings));
-        //var result = await kernel.InvokePromptAsync("Was ziehe ich heute an draussen in  Wien.", new KernelArguments(settings));
+            //var chatPrompt = new ChatHistory();
+            //chatPrompt.AddSystemMessage("You are a helpful assistant with some tools available.");
+            //chatPrompt.AddUserMessage("was brauche ich in Wien heute für Kleidung draussen?");
 
-        //with some tools available"
 
-        var prompt = @"
+            //var chatResponse = await chat.GetChatMessageContentAsync(chatPrompt);
+            //var result = await kernel.InvokePromptAsync("Sag mir das Wetter in Wien.", new KernelArguments(settings));
+            //var result = await kernel.InvokePromptAsync("Was ziehe ich heute an draussen in  Wien.", new KernelArguments(settings));
+
+            //with some tools available"
+
+            var prompt = @"
 <|system|>
 You are a helpful assistant with some tools available.
 <|tool|>
@@ -61,21 +63,23 @@ You are a helpful assistant with some tools available.
 Brauche ich heute eine Jacke in Wien?
 <|end|>
 <|assistant|>";
-        var result = await kernel.InvokePromptAsync(prompt, new KernelArguments(settings));
+            var result = await kernel.InvokePromptAsync(prompt, new KernelArguments(settings));
 
-        Console.WriteLine($"Chat response: {result}");
+            Console.WriteLine($"Chat response: {result}");
 
-    }
-    public class WetterPlugin
-    {
-        [KernelFunction("GetWetter")]
-        [Description("Weather details of today for a city as text")]
-        [return: Description("weather")]
-        public async Task<string> GetWetter([Description("city")] string Ort)
-        {
-            return $"Das Wetter in {Ort} ist aktuell -10° bei Schneefall."; //und Sonnenschein
         }
+        public class WetterPlugin
+        {
+            [KernelFunction("GetWetter")]
+            [Description("Weather details of today for a city as text")]
+            [return: Description("weather")]
+            public async Task<string> GetWetter([Description("city")] string Ort)
+            {
+                return $"Das Wetter in {Ort} ist aktuell -10° bei Schneefall."; //und Sonnenschein
+            }
+        }
+
+
     }
-
-
 }
+

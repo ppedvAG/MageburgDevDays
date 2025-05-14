@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.ChatCompletion;
 using System.Threading.Tasks;
 
 namespace MageburgDevDays
 {
     internal class SemanticKernelLmStudio
     {
-        void runLLM()
+       async void runLLM()
         {
 
             var ip = "http://127.0.0.1:1234/v1"; //LM Studio
 #pragma warning disable SKEXP007
 
+#pragma warning disable SKEXP0070
 
-          
+
 
             //beide Varianten möglich
             //var chat = kernel.GetChatCompletionService("gpt-4");

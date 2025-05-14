@@ -9,7 +9,7 @@ using Microsoft.ML.OnnxRuntimeGenAI;
 
 namespace MageburgDevDays
 {
-    internal class MLohneSemanticKernelLokal
+    public class MLohneSemanticKernelLokal
     {
         void runLLM()
         {
