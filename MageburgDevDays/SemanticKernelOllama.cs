@@ -9,7 +9,7 @@ namespace MageburgDevDays
 {
     internal class SemanticKernelOllama
     {
-        void runLLM()
+       async void runLLM()
         {
             var ip = "http://1.1.1.1:11434/";
             //your ollama public server

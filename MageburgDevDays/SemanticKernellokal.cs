@@ -12,11 +12,11 @@ namespace MageburgDevDays
 {
     public class SemanticKernellokal
     {
-        void runLLM()
+        async void runLLM()
         {
 
 #pragma warning disable SKEXP0070
-     var modelPath = @"c:\stateof\Phi-4-mini-instruct-onnx\cpu_and_mobile\cpu-int4-rtn-block-32-acc-level-4\";
+            var modelPath = @"c:\stateof\Phi-4-mini-instruct-onnx\cpu_and_mobile\cpu-int4-rtn-block-32-acc-level-4\";
 
             var builder = Kernel.CreateBuilder();
             builder.AddOnnxRuntimeGenAIChatCompletion(modelId: "phi4-mini", modelPath: modelPath);
@@ -47,6 +47,7 @@ namespace MageburgDevDays
                 Console.WriteLine("");
             }
 
-          
+
         }
     }
+}

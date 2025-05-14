@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.ChatCompletion;
 
 namespace MageburgDevDays
 {
     internal class SemanticKernellokalVision
     {
 
-        void runLLM()
+      async  void runLLM()
         {
             var modelPath = @"C:\stateof\phi-3\Phi-3-vision-128k-instruct-onnx-cpu\cpu-int4-rtn-block-32-acc-level-4";
 
